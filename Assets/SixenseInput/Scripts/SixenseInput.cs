@@ -253,7 +253,7 @@ public class SixenseInput : MonoBehaviour
 	/// <summary>
 	/// Update the static controller data once per frame.
 	/// </summary>
-	void Update()
+	void FixedUpdate()
 	{
 		// update controller data
 		uint numControllersBound = 0;
@@ -366,7 +366,7 @@ public class SixenseInput : MonoBehaviour
 			string boxText = ( m_ControllerManagerState == ControllerManagerState.BIND_CONTROLLER_ONE ) ?
 							 "Point left controller at base and pull trigger." :
 							 "Point right controller at base and pull trigger.";
-			GUI.Box( new Rect( ( ( Screen.width / 2 ) - ( boxWidth / 2 ) ), ( ( Screen.height / 2 ) - ( boxHeight / 2 ) ), boxWidth, boxHeight ), boxText );
+			GUI.Box( new Rect( ( ( Screen.width / 2 ) - ( boxWidth / 2 ) ), ( ( Screen.height  - boxHeight - 2) ), boxWidth, boxHeight ), boxText );
 		}
 	}
 	
