@@ -3936,6 +3936,7 @@ MonoBehaviour:
   Type: 1
   MoveSpeed: 5
   RotationSpeed: 3.14159274
+  bloodbase: {fileID: 100000, guid: 6f8f9d846bc2fb342837479f2c0d826b, type: 2}
 --- !u!143 &866248825
 CharacterController:
   m_ObjectHideFlags: 0
@@ -9054,6 +9055,7 @@ MonoBehaviour:
   Type: 0
   MoveSpeed: 5
   RotationSpeed: 3.14159274
+  bloodbase: {fileID: 100000, guid: 6f8f9d846bc2fb342837479f2c0d826b, type: 2}
 --- !u!148 &1978266629
 NetworkView:
   m_ObjectHideFlags: 0

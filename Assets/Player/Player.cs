@@ -11,7 +11,9 @@ public class Player : MonoBehaviour {
     public PlayerType Type;
     public float MoveSpeed = 12;
     public float RotationSpeed = Mathf.PI;
-    CharacterController Character;
+	CharacterController Character;
+	GameObject blood;
+	public GameObject bloodbase;
 
     Transform Head;
 
@@ -106,6 +108,37 @@ public class Player : MonoBehaviour {
 
 
         
+	}
+
+	void OnCollisionEnter(Collision info)
+	{
+		if (info.collider.gameObject.layer == 9) 
+		{
+			blood.particleSystem.Play();
+			//Debug.Log("Collision");
+			audio.Play ();
+		}
+	}
+	void OnCollisionStay(Collision info)
+	{
+		if (info.collider.gameObject.layer == 9) 
+		{
+			blood.transform.position = info.contacts[0].point;
+			Vector3 n = info.contacts[0].normal;
+			if (info.contacts[0].thisCollider == info.collider)
+			{
+			}
+			else
+			{
+				n = -n;
+			}
+			blood.transform.LookAt(blood.transform.position + n);
+			//Debug.Log("DAFDJADF");
+		}
+	}
+	void OnCollisionExit(Collision info)
+	{
+		blood.particleSystem.Stop();
 	}
 
     void HandleOculusResets()
