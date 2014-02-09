@@ -84,36 +84,18 @@ public class Sword : MonoBehaviour
         VelocityCounter += Time.deltaTime;
         VelocityCounter = Mathf.Clamp(VelocityCounter, 0, 1);
     }
-/*	void OnCollisionEnter(Collision info){
-		Debug.Log (info);
-		if (info.collider.gameObject.layer == 9) {
+
+	void OnCollisionEnter(Collision info)
+    {
+		if (info.collider.gameObject.layer == 9) 
+        {
 			Debug.Log("Collision");
 			audio.Play ();	
 		}
 	}
     void OnCollisionStay(Collision info)
     {
-        /*if (info.collider.gameObject.layer == 9)
-        {
-            
-            VelocityCounter = 0.0f;
-
-           Vector3 a, b;
-           float r = PhysUtil.SegmentSegment(transform.position, transform.position + transform.rotation * new Vector3(0, 0.3720226f, 0.6694739f),
-                                             info.collider.gameObject.transform.position, info.collider.gameObject.transform.position + info.collider.gameObject.transform.rotation * new Vector3(0, 0.3720226f, 0.6694739f), out a, out b);
-
-           Debug.Log("Sword Contact! " + r);
-           if (r < 0.076661)
-           {
-               //Debug.Log("Correcting");
-               //Vector3 shift = (a - b).normalized * (0.076661f - ((a - b).magnitude));
-               //transform.position += shift;
-           }
-        }*/
-        //foreach (ContactPoint p in info.contacts)
-        //{
-        //    p.thisCollider.transform.root.position -= p.normal;
-        //}
+        //Debug.Log("DAFDJADF");
     }
 
     void OnSerializeNetworkView(BitStream stream, NetworkMessageInfo info)

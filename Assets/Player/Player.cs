@@ -33,6 +33,9 @@ public class Player : MonoBehaviour {
         OVRLensCorrection[] lens = GetComponentsInChildren<OVRLensCorrection>();
         foreach (OVRLensCorrection l in lens)
             l.enabled = true;
+
+        AudioListener listener = GetComponentInChildren<AudioListener>();
+        listener.enabled = true;
     }
 
 

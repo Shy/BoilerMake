@@ -102,7 +102,7 @@ public class NetworkManager : MonoBehaviour
             }
             if (GUI.Button(new Rect(btnX, btnY + 2*(border + btnH), btnW, btnH), "ConnectLan"))
             {
-                Network.Connect("169.254.144.255", 25001);
+                Network.Connect("169.254.144.254", 25001);
             }
             if (Hosts != null)
             {
