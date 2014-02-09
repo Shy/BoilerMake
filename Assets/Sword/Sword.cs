@@ -92,10 +92,12 @@ public class Sword : MonoBehaviour
 
 	void OnCollisionEnter(Collision info)
     {
+        Debug.Log("Collision");
+
 		if (info.collider.gameObject.layer == 9) 
 		{
 			sparks.particleSystem.Play();
-			//Debug.Log("Collision");
+		
 			audio.Play ();
 		}
 	}

@@ -65,7 +65,7 @@ public class Player : MonoBehaviour {
 	// Use this for initialization
 	void Start () 
     {
-        Head = transform.FindChild("Head");
+        Head = transform.FindChild("OVRCameraController/CameraLeft/Head");
 
         Character = GetComponent<CharacterController>();
 	}
@@ -74,6 +74,13 @@ public class Player : MonoBehaviour {
 	void Update () 
     {
         HandleOculusResets();
+
+
+        if (Type == PlayerType.Client && Input.GetKeyDown(KeyCode.J))
+        {
+            Debug.Log("REMOVE HEAD");
+            Decapitate();
+        }
 
         if (Network.isServer)
         {
@@ -97,6 +104,7 @@ public class Player : MonoBehaviour {
             
         }
 
+
         
 	}
 
@@ -111,14 +119,41 @@ public class Player : MonoBehaviour {
 
     void RemoveHead()
     {
+
         Vector3 whpos = Head.position;
         Quaternion whrot = Head.rotation;
 
-        
+        Head.parent = null;
+
+        Transform OVRcam = transform.FindChild("OVRCameraController");
+
+        OVRcam.parent = Head;
+
+        Head.gameObject.AddComponent<Rigidbody>();
+
+        Head.rigidbody.AddForce(Head.rotation * new Vector3(0, 1, 1));
+
+        Head.networkView.stateSynchronization = NetworkStateSynchronization.Unreliable;
+        Head.networkView.observed = Head.rigidbody;
+
+
+
     }
 
     [RPC]
     void RemoteDecapitate()
     {
+        RemoveHead();
     }
+
+    void Decapitate()
+    {
+        if (Network.isServer)
+        {
+            networkView.RPC("RemoteDecapitate", RPCMode.AllBuffered);
+            RemoveHead();
+        }
+    }
+
+   
 }
