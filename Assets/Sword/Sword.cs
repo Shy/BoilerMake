@@ -23,6 +23,11 @@ public class Sword : MonoBehaviour
 	// Use this for initialization
 	void Start () 
     {
+        
+
+        TargetPos = transform.position;
+        TargetRot = transform.rotation;
+
         Controller = GetComponent<SwordController>();
 
         if (Controller == null)
@@ -71,15 +76,13 @@ public class Sword : MonoBehaviour
         {
             Orientation orientation = Controller.GetOrientation(Player);
 
-            if (!Controller.Ready())
+            if (Controller.Ready())
             {
-
-                return;
+                TargetPos = orientation.Position;
+                TargetRot = orientation.Rotation;
             }
-
-            TargetPos = orientation.Position;
-            TargetRot = orientation.Rotation;
         }
+        
         PhysUtil.ForceTrack(rigidbody, TargetPos, TargetRot, 50, 50, VelocityCounter);
         VelocityCounter += Time.deltaTime;
         VelocityCounter = Mathf.Clamp(VelocityCounter, 0, 1);
@@ -89,7 +92,7 @@ public class Sword : MonoBehaviour
     {
 		if (info.collider.gameObject.layer == 9) 
         {
-			Debug.Log("Collision");
+			//Debug.Log("Collision");
 			audio.Play ();	
 		}
 	}
