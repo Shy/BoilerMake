@@ -7,17 +7,23 @@ public class Frankenstein : MonoBehaviour
     Quaternion StartRot;
     public Transform Body;
     Player player;
+    Injury injury;
 	// Use this for initialization
 	void Start () 
     {
         StartPos = transform.localPosition;
         StartRot = transform.localRotation;
         Body = transform.root;
+
+        injury = Body.GetChild(0).GetComponent<Injury>();
         player = Body.GetComponent<Player>();
 	}
 
     void ReAttach()
     {
+        if (!injury.Decapitated)
+            return;
+
         Transform Container = Body.GetChild(0);
 
         Transform OVRcam = transform.FindChild("OVRCameraController");
@@ -33,8 +39,28 @@ public class Frankenstein : MonoBehaviour
         transform.localPosition = StartPos;
         transform.localRotation = StartRot;
 
+        networkView.stateSynchronization = NetworkStateSynchronization.Off;
+        networkView.observed = transform;
+
         Destroy(rigidbody);
+
+        injury.Decapitated = false;
         
+    }
+
+    [RPC]
+    void RemoteRecapitate()
+    {
+        ReAttach();
+    }
+
+    void Recapitate()
+    {
+        if (Network.isServer)
+        {
+            networkView.RPC("RemoteRecapitate", RPCMode.OthersBuffered);
+            ReAttach();
+        }
     }
 
 	// Update is called once per frame
@@ -44,6 +70,11 @@ public class Frankenstein : MonoBehaviour
         {
             if (player.Type == Player.PlayerType.Host && Input.GetKeyDown(KeyCode.D))
             {
+                Recapitate();
+            }
+            if (player.Type == Player.PlayerType.Client && Input.GetKeyDown(KeyCode.F))
+            {
+                Recapitate();
             }
         }
 	}

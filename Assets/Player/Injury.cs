@@ -8,7 +8,8 @@ public class Injury : MonoBehaviour
 
     Transform Head;
 
-    bool Decapitated = false;
+    [HideInInspector]
+    public bool Decapitated = false;
 	// Use this for initialization
 	void Start () 
     {
@@ -115,7 +116,7 @@ public class Injury : MonoBehaviour
     {
         if (Network.isServer)
         {
-            networkView.RPC("RemoteDecapitate", RPCMode.AllBuffered);
+            networkView.RPC("RemoteDecapitate", RPCMode.OthersBuffered);
             RemoveHead();
         }
     }

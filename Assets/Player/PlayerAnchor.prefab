@@ -160,6 +160,7 @@ GameObject:
   - 135: {fileID: 13500000}
   - 23: {fileID: 2300010}
   - 148: {fileID: 14800002}
+  - 114: {fileID: 11400016}
   m_Layer: 0
   m_Name: Head
   m_TagString: Untagged
@@ -682,6 +683,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bloodbase: {fileID: 100000, guid: 6f8f9d846bc2fb342837479f2c0d826b, type: 2}
+  Decapitated: 0
+--- !u!114 &11400016
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100018}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 181c84cbee30c2f4088eaf42a78557de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Body: {fileID: 400008}
 --- !u!124 &12400000
 Behaviour:
   m_ObjectHideFlags: 1
