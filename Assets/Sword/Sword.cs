@@ -84,7 +84,13 @@ public class Sword : MonoBehaviour
         VelocityCounter += Time.deltaTime;
         VelocityCounter = Mathf.Clamp(VelocityCounter, 0, 1);
     }
-
+/*	void OnCollisionEnter(Collision info){
+		Debug.Log (info);
+		if (info.collider.gameObject.layer == 9) {
+			Debug.Log("Collision");
+			audio.Play ();	
+		}
+	}
     void OnCollisionStay(Collision info)
     {
         /*if (info.collider.gameObject.layer == 9)

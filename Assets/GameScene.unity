@@ -459,6 +459,10 @@ Prefab:
       propertyPath: Type
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2300004, guid: f2ceceb268398d44c91c329465828ba7, type: 2}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: de576af7ea9a4b14db48ca573017f06d, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f2ceceb268398d44c91c329465828ba7, type: 2}
   m_RootGameObject: {fileID: 866248822}
@@ -1767,6 +1771,7 @@ GameObject:
   - 114: {fileID: 449879948}
   - 148: {fileID: 449879951}
   - 148: {fileID: 449879952}
+  - 82: {fileID: 449879953}
   m_Layer: 9
   m_Name: ClientSword
   m_TagString: Untagged
@@ -1857,6 +1862,64 @@ NetworkView:
   m_ViewID:
     m_ID: 12
     m_Type: 1
+--- !u!82 &449879953
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 449879946}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_audioClip: {fileID: 8300000, guid: ace6b9efe926b874480680d830cacf55, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
 --- !u!1 &458742078
 GameObject:
   m_ObjectHideFlags: 0
@@ -3014,6 +3077,7 @@ GameObject:
   - 114: {fileID: 735360217}
   - 148: {fileID: 735360218}
   - 148: {fileID: 735360219}
+  - 82: {fileID: 735360220}
   m_Layer: 9
   m_Name: HostSword
   m_TagString: Untagged
@@ -3104,6 +3168,64 @@ NetworkView:
   m_ViewID:
     m_ID: 11
     m_Type: 1
+--- !u!82 &735360220
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 735360213}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_audioClip: {fileID: 8300000, guid: ace6b9efe926b874480680d830cacf55, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
 --- !u!1 &750332003
 GameObject:
   m_ObjectHideFlags: 0
@@ -3129,30 +3251,30 @@ Transform:
   m_LocalPosition: {x: .121073723, y: 4.67170334, z: -.201266289}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 33746029}
-  - {fileID: 195330895}
-  - {fileID: 243551794}
-  - {fileID: 323162456}
-  - {fileID: 531631978}
-  - {fileID: 573809257}
-  - {fileID: 645452664}
-  - {fileID: 891416499}
-  - {fileID: 954960313}
-  - {fileID: 1011496988}
-  - {fileID: 1136235404}
-  - {fileID: 1205489724}
   - {fileID: 1260082602}
-  - {fileID: 1284342669}
-  - {fileID: 1465122432}
-  - {fileID: 1491605181}
-  - {fileID: 1653361044}
-  - {fileID: 1671228011}
-  - {fileID: 1784254592}
-  - {fileID: 1921203761}
-  - {fileID: 1940060753}
+  - {fileID: 243551794}
+  - {fileID: 1136235404}
   - {fileID: 1947422853}
+  - {fileID: 1940060753}
+  - {fileID: 1921203761}
+  - {fileID: 573809257}
   - {fileID: 1994005185}
+  - {fileID: 1284342669}
+  - {fileID: 1671228011}
+  - {fileID: 323162456}
   - {fileID: 2033654391}
+  - {fileID: 1011496988}
+  - {fileID: 531631978}
+  - {fileID: 954960313}
+  - {fileID: 1205489724}
+  - {fileID: 1491605181}
+  - {fileID: 891416499}
+  - {fileID: 1784254592}
+  - {fileID: 195330895}
+  - {fileID: 1465122432}
+  - {fileID: 645452664}
+  - {fileID: 1653361044}
+  - {fileID: 33746029}
   m_Father: {fileID: 0}
 --- !u!1 &758734678
 GameObject:
@@ -6748,7 +6870,7 @@ Renderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 2100000, guid: 1f6364a2ece673c4290faeb89a69ca74, type: 2}
+  - {fileID: 2100000, guid: de576af7ea9a4b14db48ca573017f06d, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
