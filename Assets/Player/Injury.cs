@@ -13,6 +13,7 @@ public class Injury : MonoBehaviour
 	void Start () 
     {
         blood = (GameObject)Instantiate(bloodbase);
+		blood.particleSystem.Stop ();
 
         Head = transform.FindChild("OVRCameraController/CameraLeft/Head");
 	}

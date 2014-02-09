@@ -26,6 +26,7 @@ public class Sword : MonoBehaviour
 	void Start () 
     {
 		sparks = (GameObject)Instantiate(sparksbase);
+		sparks.particleSystem.Stop ();
 
         TargetPos = transform.position;
         TargetRot = transform.rotation;
@@ -102,8 +103,11 @@ public class Sword : MonoBehaviour
 		}
 	}
     void OnCollisionStay(Collision info)
-    {
-		sparks.transform.position = info.contacts[0].point;
+	{
+		if (info.collider.gameObject.layer == 9) 
+		{
+			sparks.transform.position = info.contacts[0].point;
+		}
         //Debug.Log("DAFDJADF");
     }
 	void OnCollisionExit(Collision info)
