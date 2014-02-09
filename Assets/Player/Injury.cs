@@ -4,7 +4,9 @@ using System.Collections;
 public class Injury : MonoBehaviour 
 {
     GameObject blood;
+	public GameObject fountain;
     public GameObject bloodbase;
+	public Transform headPos;
 
     Transform Head;
 
@@ -14,7 +16,10 @@ public class Injury : MonoBehaviour
 	void Start () 
     {
         blood = (GameObject)Instantiate(bloodbase);
+		fountain = (GameObject)Instantiate (bloodbase);
+		fountain.transform.parent = headPos; 
 		blood.particleSystem.Stop ();
+		fountain.particleSystem.Stop();
 
         Head = transform.FindChild("OVRCameraController/CameraLeft/Head");
 	}
@@ -82,6 +87,7 @@ public class Injury : MonoBehaviour
     {
         if (Decapitated)
             return;
+		fountain.particleSystem.Play();
         Decapitated = true;
         Vector3 whpos = Head.position;
         Quaternion whrot = Head.rotation;
