@@ -3,17 +3,29 @@ using System.Collections;
 
 public class Frankenstein : MonoBehaviour 
 {
+    Vector3 RespawnPos;
+    Quaternion RespawnRot;
+
     Vector3 StartPos;
     Quaternion StartRot;
     public Transform Body;
+    public Transform OtherBody;
+
+    Frankenstein OtherFrank;
+
     Player player;
     Injury injury;
 	// Use this for initialization
 	void Start () 
     {
+        OtherFrank = OtherBody.GetComponentInChildren<Frankenstein>();
+
         StartPos = transform.localPosition;
         StartRot = transform.localRotation;
         Body = transform.root;
+
+        RespawnPos = Body.transform.position;
+        RespawnRot = Body.transform.rotation;
 
         injury = Body.GetChild(0).GetComponent<Injury>();
         player = Body.GetComponent<Player>();
@@ -21,7 +33,11 @@ public class Frankenstein : MonoBehaviour
 
     float RecapitationTimer = 3.0f;
 
-
+    void Relocate()
+    {
+        Body.transform.position = RespawnPos;
+        Body.transform.rotation = RespawnRot;
+    }
 
     void ReAttach()
     {
@@ -80,7 +96,11 @@ public class Frankenstein : MonoBehaviour
             {
                 RecapitationTimer -= Time.deltaTime;
                 if (RecapitationTimer < 0)
+                {
                     Recapitate();
+                    Relocate();
+                    OtherFrank.Relocate();
+                }
             }
 
             if (player.Type == Player.PlayerType.Host && Input.GetKeyDown(KeyCode.D))
@@ -91,6 +111,15 @@ public class Frankenstein : MonoBehaviour
             {
                 Recapitate();
             }
+            if (player.Type == Player.PlayerType.Host && Input.GetKeyDown(KeyCode.W))
+            {
+                Relocate();
+            }
+            if (player.Type == Player.PlayerType.Client && Input.GetKeyDown(KeyCode.E))
+            {
+                Relocate();
+            }
+
         }
 	}
 }
