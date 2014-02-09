@@ -108,18 +108,28 @@ class PlayerSwordController : SwordController
 
     public void OnGUI()
     {
-        if (Mode == SyncMode.Chest)
+        if ((Network.isServer && Type == PlayerType.Host) || (Network.isClient && Type == PlayerType.Client))
         {
-            GUIHelper.StereoMessage("Place Controller At Chest and Pull Trigger");
-            //uint boxWidth = 300;
-            //uint boxHeight = 24;
-            //string boxText = "Place Controller At Chest and Pull Trigger";
-            //GUI.Box(new Rect(((Screen.width / 2) - (boxWidth / 2)), ((Screen.height / 2) - (boxHeight / 2)) - 48, boxWidth, boxHeight), boxText);
+            if (Mode == SyncMode.Chest)
+            {
+                GUIHelper.StereoMessage("Place Controller At Chest and Pull Trigger");
+                //uint boxWidth = 300;
+                //uint boxHeight = 24;
+                //string boxText = "Place Controller At Chest and Pull Trigger";
+                //GUI.Box(new Rect(((Screen.width / 2) - (boxWidth / 2)), ((Screen.height / 2) - (boxHeight / 2)) - 48, boxWidth, boxHeight), boxText);
+            }
+            if (Mode == SyncMode.ArmLength)
+            {
+                GUIHelper.StereoMessage("Place Controller At Arms Length and Pull Trigger");
+            }
         }
-        if (Mode == SyncMode.ArmLength)
-        {
-            GUIHelper.StereoMessage("Place Controller At Arms Length and Pull Trigger");
-        }
+    }
+
+    void OnSerializeNetworkView(BitStream stream, NetworkMessageInfo info)
+    {
+        int mode = (int)Mode;
+        stream.Serialize(ref mode);
+        Mode = (SyncMode)mode;
     }
 }
 
