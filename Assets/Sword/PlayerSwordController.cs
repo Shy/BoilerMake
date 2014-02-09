@@ -48,6 +48,7 @@ class PlayerSwordController : SwordController
         {
             if (Input.GetKey(KeyCode.C))
             {
+                Debug.Log("Resetting P1 Hydra");
                 Mode = SyncMode.Starting;
             }
         }
@@ -55,6 +56,7 @@ class PlayerSwordController : SwordController
         {
             if (Input.GetKey(KeyCode.V))
             {
+                Debug.Log("Resetting P2 Hydra");
                 Mode = SyncMode.Starting;
             }
         }
@@ -123,10 +125,6 @@ class PlayerSwordController : SwordController
             if (Mode == SyncMode.Chest)
             {
                 GUIHelper.StereoMessage("Place Controller At Chest and Pull Trigger");
-                //uint boxWidth = 300;
-                //uint boxHeight = 24;
-                //string boxText = "Place Controller At Chest and Pull Trigger";
-                //GUI.Box(new Rect(((Screen.width / 2) - (boxWidth / 2)), ((Screen.height / 2) - (boxHeight / 2)) - 48, boxWidth, boxHeight), boxText);
             }
             if (Mode == SyncMode.ArmLength)
             {

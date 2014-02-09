@@ -3440,7 +3440,7 @@ NetworkView:
   m_GameObject: {fileID: 735360213}
   m_Enabled: 1
   m_StateSynchronization: 2
-  m_Observed: {fileID: 735360216}
+  m_Observed: {fileID: 735360215}
   m_ViewID:
     m_ID: 1
     m_Type: 1
@@ -3541,30 +3541,30 @@ Transform:
   m_LocalPosition: {x: .121073723, y: 4.67170334, z: -.201266289}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 243551794}
+  - {fileID: 1136235404}
+  - {fileID: 1947422853}
+  - {fileID: 1940060753}
+  - {fileID: 1921203761}
+  - {fileID: 573809257}
+  - {fileID: 1994005185}
+  - {fileID: 1284342669}
+  - {fileID: 1671228011}
+  - {fileID: 323162456}
   - {fileID: 2033654391}
+  - {fileID: 1011496988}
+  - {fileID: 531631978}
+  - {fileID: 954960313}
+  - {fileID: 1205489724}
+  - {fileID: 1491605181}
+  - {fileID: 891416499}
+  - {fileID: 1260082602}
+  - {fileID: 1784254592}
+  - {fileID: 195330895}
   - {fileID: 1465122432}
   - {fileID: 645452664}
-  - {fileID: 891416499}
-  - {fileID: 1671228011}
-  - {fileID: 1994005185}
-  - {fileID: 954960313}
-  - {fileID: 1947422853}
   - {fileID: 1653361044}
-  - {fileID: 1011496988}
-  - {fileID: 1205489724}
-  - {fileID: 195330895}
-  - {fileID: 1491605181}
-  - {fileID: 531631978}
   - {fileID: 33746029}
-  - {fileID: 573809257}
-  - {fileID: 1921203761}
-  - {fileID: 323162456}
-  - {fileID: 1136235404}
-  - {fileID: 1784254592}
-  - {fileID: 1284342669}
-  - {fileID: 243551794}
-  - {fileID: 1260082602}
-  - {fileID: 1940060753}
   m_Father: {fileID: 0}
 --- !u!1 &758734678
 GameObject:
@@ -7208,6 +7208,10 @@ Prefab:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 14800000, guid: c51811b68d6eb7b40a57733d4384f9ff, type: 2}
+      propertyPath: m_Observed
+      value: 
+      objectReference: {fileID: 735360215}
     m_RemovedComponents:
     - {fileID: 11400004, guid: c51811b68d6eb7b40a57733d4384f9ff, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: c51811b68d6eb7b40a57733d4384f9ff, type: 2}
