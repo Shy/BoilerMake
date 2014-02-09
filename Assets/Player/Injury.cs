@@ -45,8 +45,8 @@ public class Injury : MonoBehaviour
                     if (hitter.gameObject.layer == 9)
                     {
                         //Its a sword!
-                      
-                          Decapitate();
+                        if (hitter.transform.root.rigidbody.velocity.magnitude > 1)
+                            Decapitate();
                        
                     }
                 }
@@ -89,6 +89,8 @@ public class Injury : MonoBehaviour
 
         if (OVRcam != null)
             OVRcam.parent = Head;
+
+        OVRcam.GetComponent<OVRCameraController>().FollowOrientation = Head;
 
         Head.gameObject.AddComponent<Rigidbody>();
 
