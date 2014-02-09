@@ -73,22 +73,18 @@ public class Player : MonoBehaviour {
             if (controller == null || !controller.Enabled)
                 return;
 
-            Vector3 move = new Vector3(controller.JoystickX, 0, controller.JoystickY) * MoveSpeed;
-            move = transform.rotation * move;
-            Character.SimpleMove(move);
+            Vector3 move = new Vector3(0, 0, controller.JoystickY) * MoveSpeed;
 
-            if (controller.GetButton(SixenseButtons.THREE))
-            {
-                Vector3 angle = transform.rotation.ToEulerAngles();
-                angle.y -= RotationSpeed * Time.deltaTime;
-                transform.rotation = Quaternion.EulerAngles(angle);
-            }
-            else if (controller.GetButton(SixenseButtons.FOUR))
-            {
-                Vector3 angle = transform.rotation.ToEulerAngles();
-                angle.y += RotationSpeed * Time.deltaTime;
-                transform.rotation = Quaternion.EulerAngles(angle);
-            }
+            if(controller.Trigger > 0.2) {
+				move.x = controller.JoystickX * MoveSpeed;
+			} else {
+				Vector3 angle = transform.rotation.ToEulerAngles();
+				angle.y += controller.JoystickX * RotationSpeed * Time.deltaTime;
+				transform.rotation = Quaternion.EulerAngles(angle);
+			}
+
+			move = transform.rotation * move;
+            Character.SimpleMove(move);
         }
 	}
 }
