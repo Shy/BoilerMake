@@ -13,7 +13,6 @@ GameObject:
   - 114: {fileID: 11400002}
   - 114: {fileID: 11400000}
   - 148: {fileID: 14800004}
-  - 114: {fileID: 11400014}
   m_Layer: 8
   m_Name: CameraLeft
   m_TagString: MainCamera
@@ -69,8 +68,6 @@ GameObject:
   - 4: {fileID: 400006}
   - 114: {fileID: 11400010}
   - 114: {fileID: 11400008}
-  - 148: {fileID: 14800002}
-  - 114: {fileID: 11400016}
   m_Layer: 8
   m_Name: OVRCameraController
   m_TagString: Untagged
@@ -543,7 +540,7 @@ MonoBehaviour:
   EyeCenterPosition: {x: 0, y: .150000006, z: .0900000036}
   UsePlayerEyeHeight: 0
   FollowOrientation: {fileID: 400008}
-  TrackerRotatesY: 1
+  TrackerRotatesY: 0
   PortraitMode: 0
   EnableOrientation: 1
   PredictionOn: 1
@@ -568,28 +565,6 @@ MonoBehaviour:
   Type: 0
   MoveSpeed: 5
   RotationSpeed: 3.14159274
---- !u!114 &11400014
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100000}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9ba7d1dc198456243906651ba89102d8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &11400016
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100006}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9ba7d1dc198456243906651ba89102d8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!124 &12400000
 Behaviour:
   m_ObjectHideFlags: 1
@@ -652,18 +627,6 @@ NetworkView:
   m_Enabled: 1
   m_StateSynchronization: 1
   m_Observed: {fileID: 400008}
-  m_ViewID:
-    m_ID: 0
-    m_Type: 0
---- !u!148 &14800002
-NetworkView:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100006}
-  m_Enabled: 1
-  m_StateSynchronization: 2
-  m_Observed: {fileID: 400006}
   m_ViewID:
     m_ID: 0
     m_Type: 0
