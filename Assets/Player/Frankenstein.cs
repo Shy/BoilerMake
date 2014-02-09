@@ -19,10 +19,18 @@ public class Frankenstein : MonoBehaviour
         player = Body.GetComponent<Player>();
 	}
 
+    float RecapitationTimer = 3.0f;
+
+
+
     void ReAttach()
     {
         if (!injury.Decapitated)
             return;
+
+        RecapitationTimer = 3;
+
+        injury.fountain.particleSystem.Stop();
 
         Transform Container = Body.GetChild(0);
 
@@ -68,6 +76,13 @@ public class Frankenstein : MonoBehaviour
     {
         if (Network.isServer)
         {
+            if (injury.Decapitated)
+            {
+                RecapitationTimer -= Time.deltaTime;
+                if (RecapitationTimer < 0)
+                    Recapitate();
+            }
+
             if (player.Type == Player.PlayerType.Host && Input.GetKeyDown(KeyCode.D))
             {
                 Recapitate();

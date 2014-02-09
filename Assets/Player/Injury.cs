@@ -10,6 +10,8 @@ public class Injury : MonoBehaviour
 
     Transform Head;
 
+
+
     [HideInInspector]
     public bool Decapitated = false;
 	// Use this for initialization
@@ -17,7 +19,9 @@ public class Injury : MonoBehaviour
     {
         blood = (GameObject)Instantiate(bloodbase);
 		fountain = (GameObject)Instantiate (bloodbase);
-		fountain.transform.parent = headPos; 
+		fountain.transform.parent = headPos;
+        fountain.transform.localPosition = new Vector3(0, 0, 0);
+        fountain.transform.localRotation = Quaternion.AxisAngle(new Vector3(1, 0, 0), -Mathf.PI / 2);
 		blood.particleSystem.Stop ();
 		fountain.particleSystem.Stop();
 
@@ -27,17 +31,14 @@ public class Injury : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
-	
+	    
 	}
 
     void OnCollisionEnter(Collision info)
     {
-        Debug.Log("Sword - Body Collision");
-        Debug.Log(info.collider.gameObject.name);
         if (info.collider.gameObject.layer == 9)
 		{
 			audio.Play ();
-            Debug.Log("Blooood");
             blood.particleSystem.Play();
 
             //audio.Play ();
@@ -53,14 +54,36 @@ public class Injury : MonoBehaviour
                     if (hitter.gameObject.layer == 9)
                     {
                         //Its a sword!
-                        if (hitter.transform.root.rigidbody.velocity.magnitude > 1)
+                        //if (hitter.transform.root.rigidbody.velocity.magnitude > 1)
+                        //    Decapitate();
+
+                        Vector3 svel = hitter.transform.root.rigidbody.velocity;
+
+                        Vector3 asvel = hitter.transform.root.rigidbody.angularVelocity;
+
+                        Vector3 diff = Head.transform.position - hitter.transform.root.position;
+
+                        if (Mathf.Abs(asvel.y) > 2 * Mathf.PI)
+                        {
                             Decapitate();
-                       
+                            Debug.Log("ANGULAR DECAP " + asvel.y);
+                            break;
+                        }
+
+                        float vdotd = Vector3.Dot(diff.normalized, svel);
+
+                        if (vdotd > 2)
+                        {
+                            Debug.Log("LINEAR DECAP");
+                            Decapitate();
+                            break;
+                        }
                     }
                 }
             }
         }
     }
+
     void OnCollisionStay(Collision info)
     {
         if (info.collider.gameObject.layer == 9)
@@ -103,6 +126,7 @@ public class Injury : MonoBehaviour
 
         Head.gameObject.AddComponent<Rigidbody>();
 
+        Head.rigidbody.mass = 10;
         Head.rigidbody.AddForce(Head.rotation * new Vector3(0, 1, 1));
 
         Head.networkView.stateSynchronization = NetworkStateSynchronization.Unreliable;
