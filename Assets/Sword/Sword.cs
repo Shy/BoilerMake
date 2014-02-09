@@ -23,8 +23,6 @@ public class Sword : MonoBehaviour
 	// Use this for initialization
 	void Start () 
     {
-        
-
         TargetPos = transform.position;
         TargetRot = transform.rotation;
 

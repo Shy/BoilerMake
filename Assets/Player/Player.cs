@@ -13,6 +13,7 @@ public class Player : MonoBehaviour {
     public float RotationSpeed = Mathf.PI;
     CharacterController Character;
 
+    Transform Head;
 
     void EnableOculusCameras()
     {
@@ -64,6 +65,8 @@ public class Player : MonoBehaviour {
 	// Use this for initialization
 	void Start () 
     {
+        Head = transform.FindChild("Head");
+
         Character = GetComponent<CharacterController>();
 	}
 	
@@ -102,7 +105,20 @@ public class Player : MonoBehaviour {
         if (Input.GetKey(KeyCode.B) && (Network.isClient && Type == PlayerType.Client ||  Network.isServer && Type == PlayerType.Host))
         {
             OVRDevice.ResetOrientation(0);
-            Debug.Log("Resetting OCULUS");
+            Debug.Log("Resetting Oculus");
         }
+    }
+
+    void RemoveHead()
+    {
+        Vector3 whpos = Head.position;
+        Quaternion whrot = Head.rotation;
+
+        
+    }
+
+    [RPC]
+    void RemoteDecapitate()
+    {
     }
 }
