@@ -29,7 +29,8 @@ public class Injury : MonoBehaviour
         Debug.Log("Sword - Body Collision");
         Debug.Log(info.collider.gameObject.name);
         if (info.collider.gameObject.layer == 9)
-        {
+		{
+			audio.Play ();
             Debug.Log("Blooood");
             blood.particleSystem.Play();
 
