@@ -4,6 +4,8 @@ using System.Collections;
 public class Sword : MonoBehaviour 
 {
     public Transform Player;
+	GameObject sparks;
+	public GameObject sparksbase;
 
     SwordController Controller;
 
@@ -23,6 +25,8 @@ public class Sword : MonoBehaviour
 	// Use this for initialization
 	void Start () 
     {
+		sparks = (GameObject)Instantiate(sparksbase);
+
         TargetPos = transform.position;
         TargetRot = transform.rotation;
 
@@ -89,15 +93,21 @@ public class Sword : MonoBehaviour
 	void OnCollisionEnter(Collision info)
     {
 		if (info.collider.gameObject.layer == 9) 
-        {
+		{
+			sparks.particleSystem.Play();
 			//Debug.Log("Collision");
-			audio.Play ();	
+			audio.Play ();
 		}
 	}
     void OnCollisionStay(Collision info)
     {
+		sparks.transform.position = info.contacts[0].point;
         //Debug.Log("DAFDJADF");
     }
+	void OnCollisionExit(Collision info)
+	{
+		sparks.particleSystem.Stop();
+	}
 
     void OnSerializeNetworkView(BitStream stream, NetworkMessageInfo info)
     {

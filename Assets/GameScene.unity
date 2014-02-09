@@ -1893,6 +1893,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Player: {fileID: 866248823}
+  sparksbase: {fileID: 100000, guid: b64acfac42cf4f94f869c568a3cc4cd2, type: 2}
 --- !u!148 &449879951
 NetworkView:
   m_ObjectHideFlags: 0
@@ -3281,6 +3282,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Player: {fileID: 1978266626}
+  sparksbase: {fileID: 100000, guid: b64acfac42cf4f94f869c568a3cc4cd2, type: 2}
 --- !u!54 &735360216
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -8811,6 +8813,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Player: {fileID: 1262781418}
+  sparksbase: {fileID: 100000, guid: b64acfac42cf4f94f869c568a3cc4cd2, type: 2}
 --- !u!148 &1960483651
 NetworkView:
   m_ObjectHideFlags: 0
