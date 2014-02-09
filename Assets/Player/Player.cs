@@ -67,6 +67,8 @@ public class Player : MonoBehaviour {
 	// Update is called once per frame
 	void Update () 
     {
+        HandleOculusResets();
+
         if (Network.isServer)
         {
             SixenseInput.Controller controller = SixenseInput.GetController(PlayerHand);
@@ -85,6 +87,19 @@ public class Player : MonoBehaviour {
 
 			move = transform.rotation * move;
             Character.SimpleMove(move);
+
+            
         }
+
+        
 	}
+
+    void HandleOculusResets()
+    {
+        if (Input.GetKey(KeyCode.B) && (Network.isClient && Type == PlayerType.Client ||  Network.isServer && Type == PlayerType.Host))
+        {
+            OVRDevice.ResetOrientation(0);
+            Debug.Log("Resetting OCULUS");
+        }
+    }
 }

@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class ResetProp : MonoBehaviour {
+public class ResetProp : MonoBehaviour 
+{
 
     Vector3 InitialPosition;
     Quaternion InitialRotation;

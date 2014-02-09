@@ -6,7 +6,7 @@ public class NetworkManager : MonoBehaviour
     string GameKey = "BoilerMake_2014_Sword";
     bool Refereshing = false;
 
-
+    public NetworkView[] DelegatedNetworkViews;
 
     HostData [] Hosts;
 	// Use this for initialization
@@ -39,7 +39,28 @@ public class NetworkManager : MonoBehaviour
             }
         }
     }
-   
+
+    [RPC]
+    void TransferDelegated(NetworkViewID id)
+    {
+        Debug.Log("Transfering to Client");
+        foreach (NetworkView v in DelegatedNetworkViews)
+        {
+            v.viewID = id;
+        }
+    }
+
+    void CaptureOwnership()
+    {
+        NetworkViewID newid = Network.AllocateViewID();
+
+        networkView.RPC("TransferDelegated", RPCMode.All, newid);
+        
+        foreach (NetworkView v in DelegatedNetworkViews)
+        {
+            v.viewID = newid;
+        }
+    }
 
     void  OnMasterServerEvent(MasterServerEvent mse)
     {
@@ -52,6 +73,11 @@ public class NetworkManager : MonoBehaviour
     void OnServerInitialized()
     {
         Debug.Log("Server On"); 
+    }
+
+    void OnConnectedToServer()
+    {
+        CaptureOwnership();
     }
 
     void OnGUI()
