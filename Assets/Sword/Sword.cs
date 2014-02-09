@@ -10,6 +10,9 @@ public class Sword : MonoBehaviour
     float VelocityCounter = 1.0f;
     float VelocityRegen = 2.0f;
 
+    Vector3 TargetPos;
+    Quaternion TargetRot;
+
     Vector3 CurrentPoint;
     Vector3 LastPoint;
 
@@ -64,21 +67,27 @@ public class Sword : MonoBehaviour
 
     void FixedUpdate()
     {
-        Orientation orientation = Controller.GetOrientation(Player);
-
-        if (!Controller.Ready())
+        if (Network.isServer)
         {
-            
-            return;
+            Orientation orientation = Controller.GetOrientation(Player);
+
+            if (!Controller.Ready())
+            {
+
+                return;
+            }
+
+            TargetPos = orientation.Position;
+            TargetRot = orientation.Rotation;
         }
-        PhysUtil.ForceTrack(rigidbody, orientation.Position, orientation.Rotation, 50, 50, VelocityCounter);
+        PhysUtil.ForceTrack(rigidbody, TargetPos, TargetRot, 50, 50, VelocityCounter);
         VelocityCounter += Time.deltaTime;
         VelocityCounter = Mathf.Clamp(VelocityCounter, 0, 1);
     }
 
     void OnCollisionStay(Collision info)
     {
-        if (info.collider.gameObject.layer == 9)
+        /*if (info.collider.gameObject.layer == 9)
         {
             
             VelocityCounter = 0.0f;
@@ -94,10 +103,18 @@ public class Sword : MonoBehaviour
                //Vector3 shift = (a - b).normalized * (0.076661f - ((a - b).magnitude));
                //transform.position += shift;
            }
-        }
+        }*/
         //foreach (ContactPoint p in info.contacts)
         //{
         //    p.thisCollider.transform.root.position -= p.normal;
         //}
     }
+
+    void OnSerializeNetworkView(BitStream stream, NetworkMessageInfo info)
+    {
+        stream.Serialize(ref TargetPos);
+        stream.Serialize(ref TargetRot);
+    }
+
+
 }

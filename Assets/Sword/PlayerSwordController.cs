@@ -13,6 +13,11 @@ class PlayerSwordController : SwordController
     }
     public PlayerType Type;
 
+    SixenseHands PlayerHand
+    {
+        get { return (Type == PlayerType.Host ? SixenseHands.LEFT : SixenseHands.RIGHT); }
+    }
+
     enum SyncMode
     {
         Starting,
@@ -47,51 +52,55 @@ class PlayerSwordController : SwordController
 
     public override Orientation GetOrientation(Transform anchor) 
     {
-        SixenseInput.Controller controller = SixenseInput.GetController(SixenseHands.LEFT);
-        if (controller == null || !controller.Enabled)
-            return new Orientation(new Vector3(), new Quaternion());
-
-        //Debug.Log("Player");
-
-        if (Mode == SyncMode.Starting)
+        if (Network.isServer)
         {
-            if (controller.Trigger <= 0)
-            {
-                Mode = SyncMode.Chest;
-            }
-            return new Orientation(new Vector3(), new Quaternion()); 
-        }
-        if (Mode == SyncMode.Chest)
-        {
-            if (controller.Trigger > 0.5)
-            {
-                ChestPosition = controller.Position;
-                Mode = SyncMode.Waiting;
-            }
-            return new Orientation(new Vector3(), new Quaternion());
-        }
-        else if (Mode == SyncMode.Waiting)
-        {
-            if (controller.Trigger <= 0)
-            {
-                Mode = SyncMode.ArmLength;
-            }
-            return new Orientation(new Vector3(), new Quaternion());
-        }
-        else if (Mode == SyncMode.ArmLength)
-        {
-            if (controller.Trigger > 0.5)
-            {
-                ArmLengthPosition = controller.Position;
-                Mode = SyncMode.Done;
-            }
-            return new Orientation(new Vector3(), new Quaternion());
-        }
+            SixenseInput.Controller controller = SixenseInput.GetController(PlayerHand);
+            if (controller == null || !controller.Enabled)
+                return new Orientation(new Vector3(), new Quaternion());
 
-        Scale = (ArmLengthPosition - ChestPosition).magnitude;
+            //Debug.Log("Player");
 
-        return new Orientation (anchor.position + new Vector3(0, 1.54f, 0) + anchor.rotation * ((controller.Position - ChestPosition) / Scale), //Magical arm constant
-                                anchor.rotation * controller.Rotation);
+            if (Mode == SyncMode.Starting)
+            {
+                if (controller.Trigger <= 0)
+                {
+                    Mode = SyncMode.Chest;
+                }
+                return new Orientation(new Vector3(), new Quaternion());
+            }
+            if (Mode == SyncMode.Chest)
+            {
+                if (controller.Trigger > 0.5)
+                {
+                    ChestPosition = controller.Position;
+                    Mode = SyncMode.Waiting;
+                }
+                return new Orientation(new Vector3(), new Quaternion());
+            }
+            else if (Mode == SyncMode.Waiting)
+            {
+                if (controller.Trigger <= 0)
+                {
+                    Mode = SyncMode.ArmLength;
+                }
+                return new Orientation(new Vector3(), new Quaternion());
+            }
+            else if (Mode == SyncMode.ArmLength)
+            {
+                if (controller.Trigger > 0.5)
+                {
+                    ArmLengthPosition = controller.Position;
+                    Mode = SyncMode.Done;
+                }
+                return new Orientation(new Vector3(), new Quaternion());
+            }
+
+            Scale = (ArmLengthPosition - ChestPosition).magnitude;
+
+            return new Orientation(anchor.position + new Vector3(0, 1.54f, 0) + anchor.rotation * ((controller.Position - ChestPosition) / Scale), //Magical arm constant
+                                    anchor.rotation * controller.Rotation);
+        }
+        return new Orientation(new Vector3(), new Quaternion());
 
     }
 
