@@ -20,39 +20,75 @@ public class Player : MonoBehaviour {
         foreach (Camera c in cameras)
         {
             if (c != null)
+            {
+                Debug.Log("camera");
                 c.enabled = true;
+            }
+            else
+            {
+                Debug.Log("FAILED CAMERA");
+            }
         }
 
         OVRCameraController camcontroller = GetComponentInChildren<OVRCameraController> ();
         if (camcontroller != null)
         {
+            Debug.Log("controller");
             camcontroller.enabled = true;
+        }
+        else
+        {
+            Debug.Log("FAILED CAMERA CONTROLLER");
         }
 
         OVRDevice device = GetComponentInChildren<OVRDevice>();
         if (device != null)
         {
+            Debug.Log("device");
             device.enabled = true;
+        }
+        else
+        {
+            Debug.Log("FAILED DEVICE");
         }
 
         AudioListener listener = GetComponentInChildren<AudioListener>();
         if (listener != null)
         {
+            Debug.Log("listener");
             listener.enabled = true;
+        }
+        else
+        {
+            Debug.Log("FAILED LISTENER");
         }
 
         OVRCamera[] ovrcameras = GetComponentsInChildren<OVRCamera>();
         foreach (OVRCamera c in ovrcameras)
         {
             if (c != null)
+            {
+                Debug.Log("ovrcameras");
                 c.enabled = true;
+            }
+            else
+            {
+                Debug.Log("FAILED LISTENER");
+            }
         }
 
         OVRLensCorrection[] lens = GetComponentsInChildren<OVRLensCorrection>();
         foreach (OVRLensCorrection l in lens)
         {
             if (l != null)
+            {
+                Debug.Log("lens");
                 l.enabled = true;
+            }
+            else
+            {
+                Debug.Log("FAILED LENS");
+            }
         }
 
     }

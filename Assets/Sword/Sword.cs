@@ -92,7 +92,7 @@ public class Sword : MonoBehaviour
 
 	void OnCollisionEnter(Collision info)
     {
-        //Debug.Log("Collision");
+        Debug.Log("Sword Collision");
 
 		if (info.collider.gameObject.layer == 9) 
 		{

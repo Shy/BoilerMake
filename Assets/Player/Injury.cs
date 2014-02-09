@@ -7,6 +7,8 @@ public class Injury : MonoBehaviour
     public GameObject bloodbase;
 
     Transform Head;
+
+    bool Decapitated = false;
 	// Use this for initialization
 	void Start () 
     {
@@ -23,9 +25,11 @@ public class Injury : MonoBehaviour
 
     void OnCollisionEnter(Collision info)
     {
-        Debug.Log("Collision");
+        Debug.Log("Sword - Body Collision");
+        Debug.Log(info.collider.gameObject.name);
         if (info.collider.gameObject.layer == 9)
         {
+            Debug.Log("Blooood");
             blood.particleSystem.Play();
 
             //audio.Play ();
@@ -42,7 +46,7 @@ public class Injury : MonoBehaviour
                     {
                         //Its a sword!
                       
-                            Decapitate();
+                          Decapitate();
                        
                     }
                 }
@@ -73,7 +77,9 @@ public class Injury : MonoBehaviour
 
     void RemoveHead()
     {
-
+        if (Decapitated)
+            return;
+        Decapitated = true;
         Vector3 whpos = Head.position;
         Quaternion whrot = Head.rotation;
 
@@ -81,7 +87,8 @@ public class Injury : MonoBehaviour
 
         Transform OVRcam = transform.FindChild("OVRCameraController");
 
-        OVRcam.parent = Head;
+        if (OVRcam != null)
+            OVRcam.parent = Head;
 
         Head.gameObject.AddComponent<Rigidbody>();
 
