@@ -18,24 +18,43 @@ public class Player : MonoBehaviour {
     {
         Camera[] cameras = GetComponentsInChildren<Camera>();
         foreach (Camera c in cameras)
-            c.enabled = true;
+        {
+            if (c != null)
+                c.enabled = true;
+        }
 
         OVRCameraController camcontroller = GetComponentInChildren<OVRCameraController> ();
-        camcontroller.enabled = true;
+        if (camcontroller != null)
+        {
+            camcontroller.enabled = true;
+        }
 
         OVRDevice device = GetComponentInChildren<OVRDevice>();
-        device.enabled = true;
+        if (device != null)
+        {
+            device.enabled = true;
+        }
+
+        AudioListener listener = GetComponentInChildren<AudioListener>();
+        if (listener != null)
+        {
+            listener.enabled = true;
+        }
 
         OVRCamera[] ovrcameras = GetComponentsInChildren<OVRCamera>();
         foreach (OVRCamera c in ovrcameras)
-            c.enabled = true;
+        {
+            if (c != null)
+                c.enabled = true;
+        }
 
         OVRLensCorrection[] lens = GetComponentsInChildren<OVRLensCorrection>();
         foreach (OVRLensCorrection l in lens)
-            l.enabled = true;
+        {
+            if (l != null)
+                l.enabled = true;
+        }
 
-        AudioListener listener = GetComponentInChildren<AudioListener>();
-        listener.enabled = true;
     }
 
 

@@ -41,10 +41,9 @@ public class Injury : MonoBehaviour
                     if (hitter.gameObject.layer == 9)
                     {
                         //Its a sword!
-                        if (hitter.rigidbody.velocity.magnitude > 3)
-                        {
+                      
                             Decapitate();
-                        }
+                       
                     }
                 }
             }
