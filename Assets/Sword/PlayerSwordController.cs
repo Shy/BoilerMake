@@ -44,9 +44,12 @@ class PlayerSwordController : SwordController
 
     void Update()
     {
-        if (Input.GetKey(KeyCode.C))
+        if ((Network.isServer && Type == PlayerType.Host) || (Network.isClient && Type == PlayerType.Client))
         {
-            Mode = SyncMode.Starting;
+            if (Input.GetKey(KeyCode.C))
+            {
+                Mode = SyncMode.Starting;
+            }
         }
     }
 
